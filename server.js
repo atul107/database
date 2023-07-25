@@ -7,15 +7,7 @@ const port = 3000;
 const allowedOrigins = ['*'];
 
 // Use the cors middleware with specific options
-app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  }
-}));
+app.use(cors());
 
 app.post('/saveUserData', express.json(), async (req, res) => {
   const { username, mobileNumber } = req.body;
