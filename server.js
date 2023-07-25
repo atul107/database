@@ -1,7 +1,23 @@
 const express = require('express');
 const { google } = require('googleapis');
+const cors = require('cors'); 
+
+
 const app = express();
 const port = 3000; 
+
+const allowedOrigins = ['https://magnificent-kelpie-5e7738.netlify.app/'];
+
+// Use the cors middleware with specific options
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  }
+}));
 
 const apiKey = 'AIzaSyAl4fRk6B9cBZfpaR2auQUI-MouNoWld7Q';
 
